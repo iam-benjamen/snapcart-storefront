@@ -18,6 +18,7 @@ import {
   Avatar,
   Heading,
   Button,
+  HStack,
   Input,
   InputGroup,
   InputLeftElement,
@@ -28,12 +29,14 @@ import {
   TabPanel,
   TabIndicator,
 } from "@chakra-ui/react";
-import { Inter } from "next/font/google";
 import { SearchIcon } from "@chakra-ui/icons";
+import { Inter } from "next/font/google";
+
 import styles from "@/styles/Home.module.css";
 import MetaTags from "@/components/MetaTags";
 import Image from "next/image";
 import Product from "@/components/Product";
+import CartProduct from "@/components/common/CartProduct";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -290,18 +293,52 @@ export default function Home() {
             </Box>
           </Box>
           <Box
-            w={"30%"}
             display={{ base: "none", md: "flex" }}
-            alignItems={"center"}
-            height={"max-content"}
             justifyContent={"center"}
-            pt={"17rem"}
-            pl={"2rem"}
+            height={"max-content"}
+            alignItems={"center"}
+            pl={"1.5rem"}
+            w={"30%"}
           >
-            <VStack gap={"2.88rem"} alignItems={"center"}>
+            <VStack
+              pt={"17rem"}
+              // display={"none"}
+              gap={"2.88rem"}
+              alignItems={"center"}
+            >
               <Image src={emptycart} alt="empty cart" />
               <Text fontWeight={600}>Your cart is empty</Text>
             </VStack>
+
+            {/* <VStack width={"100%"} pt={"2.62rem"} alignItems={"flex-start"}>
+              <VStack gap={"1.62rem"} w={"100%"} alignItems={"flex-start"}>
+                <Text fontWeight={700} fontSize={"1.25rem"}>
+                  Orders
+                </Text>
+
+                <CartProduct />
+                <CartProduct />
+
+                <Box
+                  display={"flex"}
+                  mt={"1rem"}
+                  justifyContent={"space-between"}
+                  w={"100%"}
+                >
+                  <Text fontWeight={600} fontSize={"1.125rem"}>
+                    Subtotal
+                  </Text>
+                  <Text fontWeight={600} fontSize={"1.125rem"}>
+                    ₦30,000
+                  </Text>
+                </Box>
+
+                <Text color={"#717171"}>
+                  Shipping and taxes calculated at checkout
+                </Text>
+                <Button color={"white"} w={"100%"} bg={"#027DE3"} borderRadius={"0.25rem"}>Checkout</Button>
+              </VStack>
+            </VStack> */}
           </Box>
         </Box>
       </main>

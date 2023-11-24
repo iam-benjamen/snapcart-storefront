@@ -11,14 +11,14 @@ const inter = Inter({ subsets: ["latin"] });
 const Header = () => {
   return (
     <Box
-      display={"flex"}
       borderBottom={" 1px solid #F2F2F2"}
       justifyContent={"space-between"}
-      w={"100vw"}
+      px={{ base: "1rem", md: "3.7rem" }}
+      display={"flex"}
       height={"5.875rem"}
       alignItems={"center"}
+      w={"100vw"}
       top={0}
-      px={{ base: "1rem", md: "3.7rem" }}
     >
       <Box
         as={Link}

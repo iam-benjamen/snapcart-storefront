@@ -11,13 +11,13 @@ const Footer = () => {
   return (
     <Box
       borderTop={"1px solid #F2F2F2"}
-      display={"flex"}
-      flexDir={"column"}
       px={{ base: "1rem", md: "3.75rem" }}
-      py={"1.7rem"}
       gap={{ base: "1.25rem", md: "1.4rem" }}
-      marginTop={"7rem"}
+      flexDir={"column"}
+      display={"flex"}
       alignItems={"center"}
+      marginTop={"7rem"}
+      py={"1.7rem"}
       bottom={0}
     >
       <Text

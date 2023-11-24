@@ -24,6 +24,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { Inter } from "next/font/google";
+
+
+
+const inter = Inter({ subsets: ["latin"] });
+
 
 interface ProductProps {
   image: StaticImageData;
@@ -45,10 +51,10 @@ const Product: React.FC<ProductProps> = ({
   return (
     <>
       <Box
-        cursor={"pointer"}
         maxWidth={{ base: "100%", md: "48%" }}
-        w={"27rem"}
         height={"max-content"}
+        cursor={"pointer"}
+        w={"27rem"}
       >
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -73,6 +79,7 @@ const Product: React.FC<ProductProps> = ({
           <SwiperSlide onClick={onOpen}>
             <Image src={image} alt="product" />
           </SwiperSlide>
+
           <SwiperSlide onClick={onOpen}>
             <Image src={image} alt="product" />
           </SwiperSlide>
@@ -96,11 +103,11 @@ const Product: React.FC<ProductProps> = ({
       >
         <ModalOverlay />
         <ModalContent
+          maxW={{base:"90%",lg:"70%"}}
           borderRadius={"0.75rem"}
-          minW={"70%"}
-          w={"max-content"}
+          px={{base:"1rem",md:"2.5rem"}}
+          // w={"max-content"}
           py={"2rem"}
-          px={"2.8rem"}
         >
           <ModalBody
             flexDirection={{ base: "column", lg: "row" }}
@@ -112,7 +119,7 @@ const Product: React.FC<ProductProps> = ({
             <Box>
               <Image src={image} alt="product image" />
             </Box>
-            <VStack w={"50%"} gap={"1rem"}>
+            <VStack alignItems={"flex-start"} w={{base:"100%",lg:"50%"}} gap={"1rem"}>
               <VStack alignItems={"flex-start"} gap={"0.5rem"}>
                 <Text
                   fontFamily={"__Inter_e66fe9"}
@@ -131,6 +138,7 @@ const Product: React.FC<ProductProps> = ({
                   lineHeight={"1.5rem"}
                   color={"#717171"}
                   fontSize={"1rem"}
+                  display={{base:"none", md:"block"}}
                 >
                   {description}
                 </Text>
@@ -139,8 +147,9 @@ const Product: React.FC<ProductProps> = ({
                 flexDir={{ base: "column", md: "row" }}
                 justifyContent={"space-between"}
                 display={"flex"}
+                gap={{base:"2rem", md:"0rem"}}
                 w={"100%"}
-                mt={"1.5rem"}
+                mt={".5rem"}
               >
                 <VStack gap={"0.8rem"} alignItems={"flex-start"}>
                   <Text
@@ -212,12 +221,14 @@ const Product: React.FC<ProductProps> = ({
               </Box>{" "}
               <Button
                 bg={"#027DE3"}
+                className={inter.className}
                 color={"white"}
                 fontWeight={500}
                 w={"100%"}
-                mt="1rem"
+                mt={"1rem"}
+                _hover={{}}
               >
-                Add to Cart
+                + Add to Cart
               </Button>
             </VStack>
           </ModalBody>
