@@ -11,8 +11,9 @@ import {
   Circle,
   Button,
 } from "@chakra-ui/react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { formatNumberWithCommas } from "../../helper";
 import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 
@@ -24,21 +25,22 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+
 import { Inter } from "next/font/google";
-
-
+import { useCart } from "@/context/cartContext";
 
 const inter = Inter({ subsets: ["latin"] });
-
 
 interface ProductProps {
   image: StaticImageData;
   name: string;
-  price: string;
+  price: number;
   description: string;
+  id: number;
 }
 
 const Product: React.FC<ProductProps> = ({
+  id,
   image,
   name,
   price,
@@ -47,6 +49,10 @@ const Product: React.FC<ProductProps> = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedQuantity, setSelectedQuantity] = useState(2);
+  const [sizes, setSize] = useState([41, 42, 43, 44, 45]);
+  const [selectedSize, setSelectedSize] = useState(sizes[0]);
+
+  const { addToCart } = useCart();
 
   return (
     <>
@@ -89,7 +95,7 @@ const Product: React.FC<ProductProps> = ({
               {name}
             </Text>
             <Text fontWeight={600} fontSize={"1.5rem"}>
-              {`₦${price}`}
+              {`₦${formatNumberWithCommas(price)}`}
             </Text>
           </VStack>
         </Swiper>
@@ -103,10 +109,9 @@ const Product: React.FC<ProductProps> = ({
       >
         <ModalOverlay />
         <ModalContent
-          maxW={{base:"90%",lg:"70%"}}
+          maxW={{ base: "90%", lg: "70%" }}
           borderRadius={"0.75rem"}
-          px={{base:"1rem",md:"2.5rem"}}
-          // w={"max-content"}
+          px={{ base: "1rem", md: "2.5rem" }}
           py={"2rem"}
         >
           <ModalBody
@@ -117,9 +122,17 @@ const Product: React.FC<ProductProps> = ({
             p={0}
           >
             <Box>
-              <Image src={image} alt="product image" />
+              <Image
+                style={{ width: "100%", height: "100%" }}
+                src={image}
+                alt="product image"
+              />
             </Box>
-            <VStack alignItems={"flex-start"} w={{base:"100%",lg:"50%"}} gap={"1rem"}>
+            <VStack
+              alignItems={"flex-start"}
+              w={{ base: "100%", lg: "50%" }}
+              gap={"1rem"}
+            >
               <VStack alignItems={"flex-start"} gap={"0.5rem"}>
                 <Text
                   fontFamily={"__Inter_e66fe9"}
@@ -138,7 +151,7 @@ const Product: React.FC<ProductProps> = ({
                   lineHeight={"1.5rem"}
                   color={"#717171"}
                   fontSize={"1rem"}
-                  display={{base:"none", md:"block"}}
+                  display={{ base: "none", md: "block" }}
                 >
                   {description}
                 </Text>
@@ -147,7 +160,7 @@ const Product: React.FC<ProductProps> = ({
                 flexDir={{ base: "column", md: "row" }}
                 justifyContent={"space-between"}
                 display={"flex"}
-                gap={{base:"2rem", md:"0rem"}}
+                gap={{ base: "2rem", md: "0rem" }}
                 w={"100%"}
                 mt={".5rem"}
               >
@@ -160,16 +173,19 @@ const Product: React.FC<ProductProps> = ({
                     Size
                   </Text>
                   <HStack gap={"0.8rem"}>
-                    {[41, 42, 43, 44, 45].map((size, index) => (
+                    {sizes.map((size, index) => (
                       <Circle
                         bg={selectedIndex === index ? "#1D97FD" : "#F8F8F8"}
+                        color={selectedIndex === index ? "white" : "#717171"}
                         cursor={"pointer"}
                         size={"2.75rem"}
                         key={index}
-                        color={selectedIndex === index ? "white" : "#717171"}
                         fontSize={"1rem"}
                         fontFamily={"Poppins"}
-                        onClick={() => setSelectedIndex(index)}
+                        onClick={() => {
+                          setSelectedIndex(index);
+                          setSelectedSize(sizes[index]);
+                        }}
                       >
                         {size}
                       </Circle>
@@ -227,6 +243,18 @@ const Product: React.FC<ProductProps> = ({
                 w={"100%"}
                 mt={"1rem"}
                 _hover={{}}
+                onClick={() => {
+                  addToCart({
+                    id,
+                    image,
+                    name,
+                    price,
+                    size: selectedSize,
+                    quantity: selectedQuantity,
+                  });
+
+                  onClose();
+                }}
               >
                 + Add to Cart
               </Button>

@@ -37,10 +37,14 @@ import MetaTags from "@/components/MetaTags";
 import Image from "next/image";
 import Product from "@/components/Product";
 import CartProduct from "@/components/common/CartProduct";
+import { useCart } from "@/context/cartContext";
+import { formatNumberWithCommas } from "../../helper";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { cart, getTotalPrice } = useCart();
+
   return (
     <>
       <MetaTags />
@@ -188,39 +192,45 @@ export default function Home() {
                       columnGap={"1.4rem"}
                     >
                       <Product
+                        id={1}
                         image={product1}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                       <Product
+                        id={2}
                         image={product2}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                       <Product
+                        id={3}
                         image={product3}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                       <Product
+                        id={4}
                         image={product4}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                       <Product
+                        id={5}
                         image={product5}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                       <Product
+                        id={6}
                         image={product6}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                     </Box>
@@ -233,28 +243,32 @@ export default function Home() {
                       columnGap={"1.4rem"}
                     >
                       <Product
+                        id={101}
                         image={product1}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                       <Product
+                        id={92}
                         image={product2}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                       <Product
+                        id={93}
                         image={product3}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
 
                       <Product
+                        id={41}
                         image={product6}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                     </Box>
@@ -268,22 +282,25 @@ export default function Home() {
                       columnGap={"1.4rem"}
                     >
                       <Product
+                        id={11}
                         image={product2}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                       <Product
+                        id={27}
                         image={product3}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
 
                       <Product
+                        id={33}
                         image={product6}
                         name="Adidas Shoes M60"
-                        price={"15,000"}
+                        price={15000}
                         description="Nike stands as a symbol of innovation, quality, and iconic design. Nike, Inc., the multinational corporation headquartered in Beaverton, Oregon, has been consistently setting the benchmark for athletic footwear. Whether you're an athlete striving for peak performance or a fashion enthusiast looking for stylish and comfortable footwear,"
                       />
                     </Box>
@@ -300,45 +317,58 @@ export default function Home() {
             pl={"1.5rem"}
             w={"30%"}
           >
-            <VStack
-              pt={"17rem"}
-              // display={"none"}
-              gap={"2.88rem"}
-              alignItems={"center"}
-            >
-              <Image src={emptycart} alt="empty cart" />
-              <Text fontWeight={600}>Your cart is empty</Text>
-            </VStack>
-
-            {/* <VStack width={"100%"} pt={"2.62rem"} alignItems={"flex-start"}>
-              <VStack gap={"1.62rem"} w={"100%"} alignItems={"flex-start"}>
-                <Text fontWeight={700} fontSize={"1.25rem"}>
-                  Orders
-                </Text>
-
-                <CartProduct />
-                <CartProduct />
-
-                <Box
-                  display={"flex"}
-                  mt={"1rem"}
-                  justifyContent={"space-between"}
-                  w={"100%"}
-                >
-                  <Text fontWeight={600} fontSize={"1.125rem"}>
-                    Subtotal
-                  </Text>
-                  <Text fontWeight={600} fontSize={"1.125rem"}>
-                    ₦30,000
-                  </Text>
-                </Box>
-
-                <Text color={"#717171"}>
-                  Shipping and taxes calculated at checkout
-                </Text>
-                <Button color={"white"} w={"100%"} bg={"#027DE3"} borderRadius={"0.25rem"}>Checkout</Button>
+            {cart.length === 0 ? (
+              <VStack pt={"17rem"} gap={"2.88rem"} alignItems={"center"}>
+                <Image src={emptycart} alt="empty cart" />
+                <Text fontWeight={600}>Your cart is empty</Text>
               </VStack>
-            </VStack> */}
+            ) : (
+              <VStack width={"100%"} pt={"2.62rem"} alignItems={"flex-start"}>
+                <VStack gap={"1.62rem"} w={"100%"} alignItems={"flex-start"}>
+                  <Text fontWeight={700} fontSize={"1.25rem"}>
+                    Orders
+                  </Text>
+
+                  {cart.map((item) => (
+                    <CartProduct
+                      key={item.id}
+                      price={item.price}
+                      quantity={item.quantity}
+                      image={item.image}
+                      id={item.id}
+                      name={item.name}
+                      size={item.size}
+                    />
+                  ))}
+
+                  <Box
+                    display={"flex"}
+                    mt={"1rem"}
+                    justifyContent={"space-between"}
+                    w={"100%"}
+                  >
+                    <Text fontWeight={600} fontSize={"1.125rem"}>
+                      Subtotal
+                    </Text>
+                    <Text fontWeight={600} fontSize={"1.125rem"}>
+                      {`₦${formatNumberWithCommas(getTotalPrice())}`}
+                    </Text>
+                  </Box>
+
+                  <Text color={"#717171"}>
+                    Shipping and taxes calculated at checkout
+                  </Text>
+                  <Button
+                    color={"white"}
+                    w={"100%"}
+                    bg={"#027DE3"}
+                    borderRadius={"0.25rem"}
+                  >
+                    Checkout
+                  </Button>
+                </VStack>
+              </VStack>
+            )}
           </Box>
         </Box>
       </main>

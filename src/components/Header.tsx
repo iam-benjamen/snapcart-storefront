@@ -1,4 +1,15 @@
-import { Box, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
 import { Inter } from "next/font/google";
 import Logo from "../../public/assets/Logo.svg";
 import carticon from "../../public/assets/carticon.svg";
@@ -39,17 +50,32 @@ const Header = () => {
         </Text>
       </Box>
       <Box display={"flex"} gap={"1.5rem"} alignItems={"center"}>
-        <Box
-          cursor={"pointer"}
-          display={"flex"}
-          alignItems={"center"}
-          gap={"0.19rem"}
-        >
-          <Text fontSize={"1.125rem"} fontFamily={"Poppins"} fontWeight={600}>
-            NGN
-          </Text>
-          <Image src={dropdown} alt="dropdown icon" />
-        </Box>
+        <Menu>
+          <MenuButton>
+            <Box
+              cursor={"pointer"}
+              display={"flex"}
+              alignItems={"center"}
+              gap={"0.19rem"}
+            >
+              <Text
+                fontSize={"1.125rem"}
+                fontFamily={"Poppins"}
+                fontWeight={600}
+              >
+                NGN
+              </Text>
+              <Image src={dropdown} alt="dropdown icon" />
+            </Box>
+          </MenuButton>
+          {/* <MenuList>
+            <MenuItem>Download</MenuItem>
+            <MenuItem>Create a Copy</MenuItem>
+            <MenuItem>Mark as Draft</MenuItem>
+            <MenuItem>Delete</MenuItem>
+            <MenuItem>Attend a Workshop</MenuItem>
+          </MenuList> */}
+        </Menu>
         <Box
           cursor={"pointer"}
           display={"flex"}
